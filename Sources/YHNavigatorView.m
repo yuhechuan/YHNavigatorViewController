@@ -10,7 +10,6 @@
 #import "YHNavigatorViewCell.h"
 
 #define ITEM_LEFT_RIGHT_MARGIN 10
-#define INDICATOR_HEIGHT 1
 
 @interface YHNavigatorView () {
     YHNavigatorViewCell *_selectedCell;
@@ -46,7 +45,7 @@
     _indicator.backgroundColor = [UIColor redColor];
     [self addSubview:_indicator];
     _itemSpace = 15;
-    _indicatorHeight = 1.5;
+    _indicatorHeight = 2;
     _itemWidths = [NSMutableArray array];
 }
 
@@ -169,7 +168,7 @@
     if (currentIndex == 0) {
         cell.isChecked = YES;
         _selectedCell = cell;
-        [self updateIndicator];
+        [self updateIndicator:NO];
     }
     
     [self addSubview:cell];
@@ -188,7 +187,7 @@
     }
 
     [self updateOffset:cell];
-    [self updateIndicator];
+    [self updateIndicator:YES];
 }
 
 
@@ -211,16 +210,20 @@
     [self setContentOffset:offset animated:YES];
 }
 
-- (void)updateIndicator {
-    [UIView animateWithDuration:0.2 animations:^{
+- (void)updateIndicator:(BOOL)isAnimation {
+    if (isAnimation) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self->_indicator.frame = CGRectMake(CGRectGetMinX(self->_selectedCell.frame),CGRectGetHeight(self->_selectedCell.frame) - self->_indicatorHeight, CGRectGetWidth(self->_selectedCell.frame),self->_indicatorHeight);
+        }];
+    } else {
         self->_indicator.frame = CGRectMake(CGRectGetMinX(self->_selectedCell.frame),CGRectGetHeight(self->_selectedCell.frame) - self->_indicatorHeight, CGRectGetWidth(self->_selectedCell.frame),self->_indicatorHeight);
-    }];
+    }
 }
 
 - (void)setCurrentIndex:(NSInteger)currentIndex {
     YHNavigatorViewCell * cell = _itemWidths[currentIndex];
     [self updateOffset:cell];
-    [self updateIndicator];
+    [self updateIndicator:YES];
 }
 
 - (NSInteger)currentIndex {

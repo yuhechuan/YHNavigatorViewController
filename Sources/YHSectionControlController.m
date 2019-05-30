@@ -105,7 +105,7 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
     label.text = [NSString stringWithFormat:@"第%ld组",section];
     label.font = [UIFont systemFontOfSize:18];
     label.textAlignment = NSTextAlignmentCenter;
-    label.backgroundColor = [UIColor redColor];
+    label.backgroundColor = RGBACOLOR_YH(43,131,205, 1);
     label.textColor = [UIColor whiteColor];
     return label;
 }
