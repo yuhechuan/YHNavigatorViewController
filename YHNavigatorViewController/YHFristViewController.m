@@ -25,14 +25,20 @@
     return arr;
 }
 
-/*
-#pragma mark - Navigation
+// 可以重写  tableView 代理方法  定制页面的显示
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [super numberOfSectionsInTableView:tableView];
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [super tableView:tableView numberOfRowsInSection:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+//... 等等
 
 @end
