@@ -9,6 +9,24 @@
 #ifndef YHMacro_h
 #define YHMacro_h
 
+/**
+ *  单例模式宏模板
+ */
+#define SINGLETON_FOR_HEADER_YH(className) \
+\
++ (className *)sharedInstance;
+
+#define SINGLETON_FOR_CLASS_YH(className) \
+\
++ (className *)sharedInstance { \
+static className *shared##className = nil; \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+shared##className = [[self alloc] init]; \
+}); \
+return shared##className; \
+}
+
 #define IS_IPHONEX_YH ({\
 int tmp = 0;\
 if (@available(iOS 11.0, *)) {\

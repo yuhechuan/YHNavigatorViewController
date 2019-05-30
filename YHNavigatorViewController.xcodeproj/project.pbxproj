@@ -24,6 +24,7 @@
 		F0D7B94E229FBBB100B6AA19 /* YHFristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D7B94D229FBBB100B6AA19 /* YHFristViewController.m */; };
 		F0D7B951229FBBD100B6AA19 /* RHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D7B950229FBBD100B6AA19 /* RHSecondViewController.m */; };
 		F0D7B953229FD2DB00B6AA19 /* gif5新文件.gif in Resources */ = {isa = PBXBuildFile; fileRef = F0D7B952229FD2DB00B6AA19 /* gif5新文件.gif */; };
+		F0D7B956229FE03500B6AA19 /* YHConfigFile.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D7B955229FE03500B6AA19 /* YHConfigFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		F0D7B94F229FBBD100B6AA19 /* RHSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RHSecondViewController.h; sourceTree = "<group>"; };
 		F0D7B950229FBBD100B6AA19 /* RHSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RHSecondViewController.m; sourceTree = "<group>"; };
 		F0D7B952229FD2DB00B6AA19 /* gif5新文件.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif5新文件.gif"; sourceTree = "<group>"; };
+		F0D7B954229FE03500B6AA19 /* YHConfigFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHConfigFile.h; sourceTree = "<group>"; };
+		F0D7B955229FE03500B6AA19 /* YHConfigFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHConfigFile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 				F0D24AF4229E322D002867A2 /* YHSectionControlController.h */,
 				F0D24AF5229E322D002867A2 /* YHSectionControlController.m */,
 				F0D7B94B229FAF1400B6AA19 /* YHMacro.h */,
+				F0D7B954229FE03500B6AA19 /* YHConfigFile.h */,
+				F0D7B955229FE03500B6AA19 /* YHConfigFile.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				F0D7B951229FBBD100B6AA19 /* RHSecondViewController.m in Sources */,
 				F0D24AF0229E1B48002867A2 /* YHNavigator.m in Sources */,
 				F0D24ABA229D1E39002867A2 /* ViewController.m in Sources */,
+				F0D7B956229FE03500B6AA19 /* YHConfigFile.m in Sources */,
 				F0D24AF6229E322D002867A2 /* YHSectionControlController.m in Sources */,
 				F0D24AED229D2BDC002867A2 /* YHNavigatorViewCell.m in Sources */,
 				F0D24AF3229E3200002867A2 /* YHPageControlController.m in Sources */,

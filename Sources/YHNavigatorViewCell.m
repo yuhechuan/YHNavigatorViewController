@@ -39,7 +39,20 @@
 }
 
 - (void)setScale:(CGFloat)scale {
-    self.title.textColor = [UIColor colorWithRed:scale green:0.0 blue:0.0 alpha:1];
+    
+    UIColor *textColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1];
+    UIColor *textHeighColor =  [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:1];
+    
+    if ([YHConfigFile sharedInstance].navigatorTextColor) {
+        textColor = [YHConfigFile sharedInstance].navigatorTextColor;
+    }
+    
+    if ([YHConfigFile sharedInstance].navigatorTextHeightColor) {
+        textHeighColor = [YHConfigFile sharedInstance].navigatorTextHeightColor;
+    }
+    
+    self.title.textColor = scale > 0? textHeighColor:textColor;
+
     CGFloat minScale = 0.9;
     CGFloat trueScale = minScale + (1-minScale)*scale;
     self.transform = CGAffineTransformMakeScale(trueScale, trueScale);
@@ -54,7 +67,8 @@
     if (!_title) {
         _title = [[UILabel alloc]init];
         _title.textAlignment = NSTextAlignmentCenter;
-        _title.font = [UIFont systemFontOfSize:19];
+        _title.font = [YHConfigFile sharedInstance].navigatorTextFont?:[UIFont systemFontOfSize:19];
+        _title.textColor = [YHConfigFile sharedInstance].navigatorTextColor?:[UIColor blackColor];
         [self addSubview:_title];
     }
     return _title;

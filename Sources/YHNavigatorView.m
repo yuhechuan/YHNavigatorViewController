@@ -17,6 +17,7 @@
     CGFloat _itemSpace;  // 除title外空间
     CGFloat _indicatorHeight;
     NSMutableArray *_itemWidths;
+    YHIndicatorType _indicatorType;
 }
 
 @end
@@ -41,11 +42,14 @@
 }
 
 - (void)setUp {
-    _indicator = [[UIView alloc]init];
-    _indicator.backgroundColor = [UIColor redColor];
-    [self addSubview:_indicator];
-    _itemSpace = 15;
-    _indicatorHeight = 2;
+    _indicatorType = [YHConfigFile sharedInstance].indicatorType;
+    if (_indicatorType != YHIndicatorTypeNone) {
+        _indicator = [[UIView alloc]init];
+        _indicator.backgroundColor =  [YHConfigFile sharedInstance].indicatorColor?:[UIColor redColor];
+        _indicatorHeight = [YHConfigFile sharedInstance].indicatorHeight > 0?[YHConfigFile sharedInstance].indicatorHeight:2;
+        [self addSubview:_indicator];
+    }
+    _itemSpace = [YHConfigFile sharedInstance].itemWordSpace > 0 ?[YHConfigFile sharedInstance].itemWordSpace:15;
     _itemWidths = [NSMutableArray array];
 }
 
@@ -211,12 +215,27 @@
 }
 
 - (void)updateIndicator:(BOOL)isAnimation {
+    
+    if (_indicatorType == YHIndicatorTypeNone) {
+        return;
+    }
+    
+    CGFloat indicatorX = CGRectGetMinX(self->_selectedCell.frame);
+    CGFloat indicatorY = CGRectGetHeight(self->_selectedCell.frame) - self->_indicatorHeight;
+    CGFloat indicatorWidth = CGRectGetWidth(self->_selectedCell.frame);
+    CGFloat indicatorHeight = self->_indicatorHeight;
+    
+    if (_indicatorType == YHIndicatorTypeWord) {
+        indicatorX = CGRectGetMinX(self->_selectedCell.frame) + _itemSpace /2.0;
+        indicatorWidth = CGRectGetWidth(self->_selectedCell.frame) - _itemSpace;
+    }
+    
     if (isAnimation) {
         [UIView animateWithDuration:0.3 animations:^{
-            self->_indicator.frame = CGRectMake(CGRectGetMinX(self->_selectedCell.frame),CGRectGetHeight(self->_selectedCell.frame) - self->_indicatorHeight, CGRectGetWidth(self->_selectedCell.frame),self->_indicatorHeight);
+            self->_indicator.frame = CGRectMake(indicatorX,indicatorY, indicatorWidth,indicatorHeight);
         }];
     } else {
-        self->_indicator.frame = CGRectMake(CGRectGetMinX(self->_selectedCell.frame),CGRectGetHeight(self->_selectedCell.frame) - self->_indicatorHeight, CGRectGetWidth(self->_selectedCell.frame),self->_indicatorHeight);
+        self->_indicator.frame = CGRectMake(indicatorX,indicatorY, indicatorWidth,indicatorHeight);
     }
 }
 
