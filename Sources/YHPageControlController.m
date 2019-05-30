@@ -76,9 +76,10 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
     return _navigatorView;
 }
 
-- (void)moveToViewControllerAtIndex:(NSUInteger)index {
+- (void)moveToViewControllerAtIndex:(NSUInteger)index
+                          animation:(BOOL)animation {
     [self addChildViewControllerWithIndex:index];
-    [self scrollContainerViewToIndex:index];
+    [self scrollContainerViewToIndex:index animation:animation];
 }
 
 
@@ -91,11 +92,16 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
     [self updateFrameChildViewController:targetViewController atIndex:index];
 }
 
-- (void)scrollContainerViewToIndex:(NSUInteger)index {
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+- (void)scrollContainerViewToIndex:(NSUInteger)index
+                         animation:(BOOL)animation {
+    if (animation) {
+        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [self.containerView setContentOffset:CGPointMake(index * self.pageSize.width, 0)];
+        } completion:^(BOOL finished) {
+        }];
+    } else {
         [self.containerView setContentOffset:CGPointMake(index * self.pageSize.width, 0)];
-    } completion:^(BOOL finished) {
-    }];
+    }
 }
 
 - (void)updateFrameChildViewController:(UIViewController *)childViewController atIndex:(NSUInteger)index {
@@ -130,7 +136,7 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
         NSInteger index = round(scrollView.contentOffset.x / _pageSize.width);
         
         if (currentIndex != index) {
-            [self moveToViewControllerAtIndex:index];
+            [self moveToViewControllerAtIndex:index animation:YES];
             [self.navigatorView setCurrentIndex:index];
         }
     }
@@ -139,7 +145,9 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
 - (void)navigatorView:(YHNavigatorView *)navigatorView didSelectRowAtIndex:(NSInteger)index {
     NSInteger currentIndex = self.navigatorView.currentIndex;
     if (currentIndex != index) {
-        [self moveToViewControllerAtIndex:index];
+        NSUInteger num = currentIndex - index;
+        BOOL isAnimation = (num == 1);
+        [self moveToViewControllerAtIndex:index animation:isAnimation];
     }
 }
 
