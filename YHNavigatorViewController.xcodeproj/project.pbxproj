@@ -23,6 +23,7 @@
 		F0D7B94A229F83D500B6AA19 /* YHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D7B949229F83D500B6AA19 /* YHButton.m */; };
 		F0D7B94E229FBBB100B6AA19 /* YHFristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D7B94D229FBBB100B6AA19 /* YHFristViewController.m */; };
 		F0D7B951229FBBD100B6AA19 /* RHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D7B950229FBBD100B6AA19 /* RHSecondViewController.m */; };
+		F0D7B953229FD2DB00B6AA19 /* gif5新文件.gif in Resources */ = {isa = PBXBuildFile; fileRef = F0D7B952229FD2DB00B6AA19 /* gif5新文件.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		F0D7B94D229FBBB100B6AA19 /* YHFristViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHFristViewController.m; sourceTree = "<group>"; };
 		F0D7B94F229FBBD100B6AA19 /* RHSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RHSecondViewController.h; sourceTree = "<group>"; };
 		F0D7B950229FBBD100B6AA19 /* RHSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RHSecondViewController.m; sourceTree = "<group>"; };
+		F0D7B952229FD2DB00B6AA19 /* gif5新文件.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "gif5新文件.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		F0D24AB4229D1E39002867A2 /* YHNavigatorViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F0D7B952229FD2DB00B6AA19 /* gif5新文件.gif */,
 				F0D7B948229F83D500B6AA19 /* YHButton.h */,
 				F0D7B949229F83D500B6AA19 /* YHButton.m */,
 				F0D24AB5229D1E39002867A2 /* AppDelegate.h */,
@@ -288,6 +291,7 @@
 				F0D24AC2229D1E3A002867A2 /* LaunchScreen.storyboard in Resources */,
 				F0D24ABF229D1E3A002867A2 /* Assets.xcassets in Resources */,
 				F0D24ABD229D1E39002867A2 /* Main.storyboard in Resources */,
+				F0D7B953229FD2DB00B6AA19 /* gif5新文件.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
