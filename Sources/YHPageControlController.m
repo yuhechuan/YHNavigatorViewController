@@ -25,7 +25,7 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
                                   items:(NSArray *)items {
     if (self = [super init]) {
         self.items = items;
-        self.viewControllers =viewControllers;
+        self.viewControllers = viewControllers;
     }
     return self;
 }
@@ -84,10 +84,24 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
 
 
 - (void)addChildViewControllerWithIndex:(NSInteger)index {
-    UIViewController *targetViewController = self.viewControllers[index];
+    UIViewController *targetViewController = nil;
+    id obj = self.viewControllers[index];;
+    if ([obj isKindOfClass:[UIViewController class]]) {
+        targetViewController = obj;
+    } else if ([obj isKindOfClass:[NSString class]]) {
+        targetViewController = [[NSClassFromString(obj) alloc]init];
+    } else {
+        return;
+    }
     if ([self.childViewControllers containsObject:targetViewController] || !targetViewController) {
         return;
     }
+    
+    int R = (arc4random() % 256) ;
+    int G = (arc4random() % 256) ;
+    int B = (arc4random() % 256) ;
+    
+    targetViewController.view.backgroundColor = RGBACOLOR_YH(R, G, B, 1);
     
     [self updateFrameChildViewController:targetViewController atIndex:index];
 }
@@ -178,7 +192,22 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
     [self addChildViewController:pageControlController];
     
     // 默认加入第一个控制器
-    UIViewController *firstViewController = pageControlController.viewControllers.firstObject;
+    UIViewController *firstViewController = nil;
+    id obj = pageControlController.viewControllers.firstObject;
+    if ([obj isKindOfClass:[UIViewController class]]) {
+        firstViewController = obj;
+    } else if ([obj isKindOfClass:[NSString class]]) {
+        firstViewController = [[NSClassFromString(obj) alloc]init];
+    } else {
+        return;
+    }
+    
+    int R = (arc4random() % 256) ;
+    int G = (arc4random() % 256) ;
+    int B = (arc4random() % 256) ;
+    
+    firstViewController.view.backgroundColor = RGBACOLOR_YH(R, G, B, 1);
+    
     if ([pageControlController respondsToSelector:@selector(updateFrameChildViewController:atIndex:)]) {
         [pageControlController performSelector:@selector(updateFrameChildViewController:atIndex:) withObject:firstViewController withObject:0];
     }
