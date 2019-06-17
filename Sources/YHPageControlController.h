@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "YHNavigatorView.h"
+#import "YHConfigFile.h"
+#import "YHMacro.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

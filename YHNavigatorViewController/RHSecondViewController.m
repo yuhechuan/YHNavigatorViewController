@@ -29,7 +29,13 @@
     NSInteger count = items.count;
     NSMutableArray *arr = [NSMutableArray array];
     for (int i = 0; i < count; i++) {
-        [arr addObject:@"UIViewController"];
+        UIViewController *targetViewController = [[UIViewController alloc]init];
+        int R = (arc4random() % 256) ;
+        int G = (arc4random() % 256) ;
+        int B = (arc4random() % 256) ;
+        
+        targetViewController.view.backgroundColor = RGBACOLOR_YH(R, G, B, 1);
+        [arr addObject:targetViewController];
     }
     
     YHPageControlController *s = [[YHPageControlController alloc]initWithViewControllers:[arr copy] items:items];

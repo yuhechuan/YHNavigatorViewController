@@ -97,12 +97,6 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
         return;
     }
     
-    int R = (arc4random() % 256) ;
-    int G = (arc4random() % 256) ;
-    int B = (arc4random() % 256) ;
-    
-    targetViewController.view.backgroundColor = RGBACOLOR_YH(R, G, B, 1);
-    
     [self updateFrameChildViewController:targetViewController atIndex:index];
 }
 
@@ -201,12 +195,6 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
     } else {
         return;
     }
-    
-    int R = (arc4random() % 256) ;
-    int G = (arc4random() % 256) ;
-    int B = (arc4random() % 256) ;
-    
-    firstViewController.view.backgroundColor = RGBACOLOR_YH(R, G, B, 1);
     
     if ([pageControlController respondsToSelector:@selector(updateFrameChildViewController:atIndex:)]) {
         [pageControlController performSelector:@selector(updateFrameChildViewController:atIndex:) withObject:firstViewController withObject:0];
