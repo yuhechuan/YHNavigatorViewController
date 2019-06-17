@@ -8,12 +8,14 @@
 
 #import "YHSectionControlController.h"
 #import "YHMacro.h"
+#import "YHConfigFile.h"
 
 static CGFloat const NAVIGATOR_HEIGHT = 44;
 
 @interface YHSectionControlController ()
 
 @property (nonatomic, assign) NSInteger currentSection;
+@property (nonatomic, assign) BOOL isDragging;
 
 
 @end
@@ -33,6 +35,7 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
 }
 
 - (void)setUp {
+    [YHConfigFile sharedInstance].isHasAnimation = YES;
     [self.view addSubview:self.navigatorView];
     [self.view addSubview:self.tableView];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -126,18 +129,28 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
     if (index != _currentSection) {
         _currentSection = index;
         CGRect headRect = [self.tableView rectForHeaderInSection:index];
-        CGFloat y = self.tableView.contentOffset.y;
-        CGFloat yOffset = headRect.origin.y -y;
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            self.tableView.bounds = CGRectOffset(self.tableView.bounds,0,yOffset);
-        }];
+        BOOL annimation = [YHConfigFile sharedInstance].isHasAnimation;
+        [self.tableView setContentOffset:CGPointMake(0, headRect.origin.y) animated:annimation];
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.isDragging = YES;
+    NSLog(@"开始拖拽");
+    
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.isDragging = NO;
+    NSLog(@"结束拖拽");
+}
 
 #pragma mark - UIScrollView代理方法
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (!self.isDragging) {
+        return;
+    }
     
     CGFloat xOffset = scrollView.contentOffset.x;
     CGFloat yOffset = scrollView.contentOffset.y + 15;

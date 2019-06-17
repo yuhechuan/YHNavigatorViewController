@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"横向分页控制器";
+    self.title = @"竖向分页控制器";
     // Do any additional setup after loading the view.
 }
 

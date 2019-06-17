@@ -31,7 +31,7 @@ SINGLETON_FOR_HEADER_YH(YHConfigFile);
 @property (nonatomic, assign) YHIndicatorType indicatorType;          // 指示器显示类型 defalut is YHIndicatorTypeView
 
 @property (nonatomic, assign) CGFloat         itemWordSpace;              // 文字距离 defalut is 2.0
-
+@property (nonatomic, assign) BOOL            isHasAnimation;             // 竖向导航点击上部 下面部分是否有动画 defalut is YES
 
 
 @end

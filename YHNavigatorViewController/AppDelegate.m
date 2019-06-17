@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [YHConfigFile sharedInstance].indicatorType = YHIndicatorTypeNone;
+    [YHConfigFile sharedInstance].indicatorType = YHIndicatorTypeView;
     
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
