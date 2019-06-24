@@ -18,6 +18,7 @@
     CGFloat _indicatorHeight;
     NSMutableArray *_itemWidths;
     YHIndicatorType _indicatorType;
+    UIView *_buttomLine;
 }
 
 @end
@@ -26,7 +27,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self setUp];
+        [self setUp:CGRectZero];
     }
     return self;
 }
@@ -35,13 +36,13 @@
 - (instancetype)initWithItems:(NSArray *)items
                         frame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setUp];
+        [self setUp:frame];
         [self setUpWithItems:items frame:frame];
     }
     return self;
 }
 
-- (void)setUp {
+- (void)setUp:(CGRect)frame {
     _indicatorType = [YHConfigFile sharedInstance].indicatorType;
     if (_indicatorType != YHIndicatorTypeNone) {
         _indicator = [[UIView alloc]init];
@@ -116,6 +117,13 @@
     
     }
     self.contentSize = CGSizeMake(totalWidth, self.bounds.size.height);
+    
+    if ([YHConfigFile sharedInstance].isAddButtomLine) {
+        CGFloat lineHeight = 1.0;
+        _buttomLine = [[UIView alloc]initWithFrame:CGRectMake(0,frame.size.height-lineHeight,totalWidth, lineHeight)];
+        _buttomLine.backgroundColor = RGBACOLOR_YH(225, 225, 225, 1);
+        [self addSubview:_buttomLine];
+    }
 }
 
 - (void)reloadData {
@@ -164,6 +172,14 @@
     }
     
     self.contentSize = CGSizeMake(totalWidth, self.bounds.size.height);
+    
+    [_buttomLine removeFromSuperview];
+    if ([YHConfigFile sharedInstance].isAddButtomLine) {
+        CGFloat lineHeight = 1.0;
+        _buttomLine = [[UIView alloc]initWithFrame:CGRectMake(0,self.bounds.size.height - lineHeight,totalWidth, lineHeight)];
+        _buttomLine.backgroundColor = RGBACOLOR_YH(225, 225, 225, 1);
+        [self addSubview:_buttomLine];
+    }
 }
 
 - (void)configurationCell:(YHNavigatorViewCell *)cell

@@ -7,6 +7,7 @@
 //
 
 #import "YHNavigator.h"
+#import "YHConfigFile.h"
 
 @implementation YHNavigator
 
@@ -15,7 +16,8 @@
     for (NSString *title in datas) {
         YHNavigator *navigator = [[YHNavigator alloc]init];
         navigator.itemTitle = title;
-        navigator.itemWidth = [title sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19]}].width;
+        UIFont *font = [YHConfigFile sharedInstance].navigatorTextFont ?:[UIFont systemFontOfSize:19];
+        navigator.itemWidth = [title sizeWithAttributes:@{NSFontAttributeName:font}].width;
         [arr addObject:navigator];
     }
     return arr.copy;

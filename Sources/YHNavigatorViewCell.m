@@ -55,7 +55,9 @@
 
     CGFloat minScale = 0.9;
     CGFloat trueScale = minScale + (1-minScale)*scale;
-    self.transform = CGAffineTransformMakeScale(trueScale, trueScale);
+    if ([YHConfigFile sharedInstance].isZoomOfWord) {
+        self.transform = CGAffineTransformMakeScale(trueScale, trueScale);
+    }
 }
 
 - (void)layoutSubviews {

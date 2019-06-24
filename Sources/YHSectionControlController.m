@@ -44,12 +44,13 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
 
 - (void)setTableFooter {
     NSInteger sectionCount = [self numberOfSectionsInTableView:self.tableView] - 1;
-    CGRect headRect = [self.tableView rectForHeaderInSection:sectionCount];
+    NSInteger rowCount = [self tableView:self.tableView numberOfRowsInSection:sectionCount] - 1;
+
     CGRect sectionRect = [self.tableView rectForSection:sectionCount];
     
     CGFloat tableViewHeight = self.tableView.frame.size.height;
-    CGFloat headH = headRect.size.height;
-    CGFloat sectionH = sectionRect.size.height;
+    CGFloat headH = [self tableView:self.tableView heightForHeaderInSection:sectionCount];
+    CGFloat sectionH = [self tableView:self.tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:rowCount inSection:sectionCount]];
     
     CGFloat footH = tableViewHeight - (headH + sectionH);
     UIView *footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, footH)];
@@ -73,7 +74,7 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT_YH + NAVIGATOR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height - (NAVIGATION_BAR_HEIGHT_YH + NAVIGATOR_HEIGHT)) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT_YH + NAVIGATOR_HEIGHT, screenWidth_YH, screenHeight_YH - (NAVIGATION_BAR_HEIGHT_YH + NAVIGATOR_HEIGHT)) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -98,14 +99,14 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell_"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"第%ld组--第%ld行",indexPath.section,indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"第%ld组--第%ld行",(long)indexPath.section,indexPath.row];
     
     return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 30)];
-    label.text = [NSString stringWithFormat:@"第%ld组",section];
+    label.text = [NSString stringWithFormat:@"第%ld组",(long)section];
     label.font = [UIFont systemFontOfSize:18];
     label.textAlignment = NSTextAlignmentCenter;
     label.backgroundColor = RGBACOLOR_YH(43,131,205, 1);
