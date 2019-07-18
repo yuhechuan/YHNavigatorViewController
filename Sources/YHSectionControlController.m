@@ -45,7 +45,7 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
 - (void)setTableFooter {
     NSInteger sectionCount = [self numberOfSectionsInTableView:self.tableView] - 1;
     NSInteger rowCount = [self tableView:self.tableView numberOfRowsInSection:sectionCount] - 1;
-
+    
     CGRect sectionRect = [self.tableView rectForSection:sectionCount];
     
     CGFloat tableViewHeight = self.tableView.frame.size.height;
@@ -164,6 +164,16 @@ static CGFloat const NAVIGATOR_HEIGHT = 44;
         _currentSection = section;
         [self.navigatorView setCurrentIndex:section];
     }
+}
+
+- (void)locationGroupWithIndex:(NSInteger)index {
+    if (index == 0) {
+        return;
+    }
+    _currentSection = index;
+    CGRect headRect = [self.tableView rectForHeaderInSection:index];
+    [self.tableView setContentOffset:CGPointMake(0, headRect.origin.y) animated:NO];
+    [self.navigatorView setCurrentIndex:index isAnimation:NO];
 }
 
 

@@ -211,9 +211,13 @@
 }
 
 
+- (void)updateOffset:(YHNavigatorViewCell *)cell {
+    [self updateOffset:cell isAnimation:YES];
+}
 
 // 设置偏移量
-- (void)updateOffset:(YHNavigatorViewCell *)cell {
+- (void)updateOffset:(YHNavigatorViewCell *)cell
+         isAnimation:(BOOL)isAnimation {
     // 改变cell的选中状态
     cell.isChecked = YES;
     _selectedCell.isChecked = NO;
@@ -255,10 +259,16 @@
     }
 }
 
+
 - (void)setCurrentIndex:(NSInteger)currentIndex {
+    [self setCurrentIndex:currentIndex
+              isAnimation:YES];
+}
+- (void)setCurrentIndex:(NSInteger)currentIndex
+            isAnimation:(BOOL)isAnimation {
     YHNavigatorViewCell * cell = _itemWidths[currentIndex];
-    [self updateOffset:cell];
-    [self updateIndicator:YES];
+    [self updateOffset:cell isAnimation:isAnimation];
+    [self updateIndicator:isAnimation];
 }
 
 - (NSInteger)currentIndex {

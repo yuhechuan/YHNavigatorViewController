@@ -50,6 +50,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setCurrentIndex:(NSInteger)currentIndex;
 
+/*
+ *设置当前选中位置
+ */
+- (void)setCurrentIndex:(NSInteger)currentIndex
+            isAnimation:(BOOL)isAnimation;
+
 
 
 @end

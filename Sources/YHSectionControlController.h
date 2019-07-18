@@ -21,7 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithItems:(NSArray *)items;
 
+/*
+ 定位
+ */
 - (NSArray *)getMyItems;
+/*
+ 定位 viewDidLayoutSubviews is better
+ */
+- (void)locationGroupWithIndex:(NSInteger)index;
 
 @end
 

@@ -20,6 +20,12 @@
     // Do any additional setup after loading the view.
 }
 
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self locationGroupWithIndex:2];
+}
+
 - (NSArray *)getMyItems {
     NSArray *arr = @[@"关注",@"推荐",@"通知公告",@"新闻",@"一线传真",@"图片",@"视频",@"排行榜",@"业界动态",@"先进经验"];
     return arr;
